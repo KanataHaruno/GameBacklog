@@ -1,8 +1,10 @@
 package com.example.gamebacklog;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +17,21 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
 
     private List<Game> gameList = new ArrayList<>();
-    //private onItemClickListener listener;
+
 
     GameAdapter(List<Game> data) {
         this.gameList = gameList;
     }
 
 
-    public GameViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        Context context = viewGroup.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View row = layoutInflater.inflate(R.layout.game_item, viewGroup, false);
-        GameViewHolder viewHolder = new GameViewHolder(row);
-
-        return viewHolder;
+    public GameViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_item, parent, false);
+        GameViewHolder holder = new GameViewHolder(view);
+        return holder;
     }
 
     // Get game info by position
-    public void onBindViewHolder(GameViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GameAdapter.GameViewHolder holder, int position) {
         Game currentGame = gameList.get(position);
 
         holder.gameTitle.setText(currentGame.getTitle());
@@ -67,6 +66,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         private TextView gamePlatform;
         private TextView gameStatus;
         private TextView gameDate;
+        private CardView cardView;
 
         public GameViewHolder(final View itemView) {
             super(itemView);
@@ -74,6 +74,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             gamePlatform = itemView.findViewById(R.id.gamePlatformView);
             gameStatus = itemView.findViewById(R.id.gameStatusView);
             gameDate = itemView.findViewById(R.id.gameDateView);
+            cardView = itemView.findViewById(R.id.cvGames);
+            cardView.setClickable(true);
 
 
         }

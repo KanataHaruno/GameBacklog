@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -143,27 +144,26 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                String mDate = data.getStringExtra("date");
-                String mTitle = data.getStringExtra("title");
-                String mStatus = data.getStringExtra("status");
-                String mPlatform = data.getStringExtra("platform");
-                Game game = new Game(mTitle, mStatus, mPlatform, mDate);
+    protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode,data );
+        if (requestCode == ADD_REQUEST && resultCode == RESULT_OK) {
+
+                Game game = data.getParcelableExtra(MainActivity.ITEM);
                 gameViewModel.insert(game);
-                updateUI();
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+
+        } else if (requestCode == UPDATE_REQUEST && resultCode == RESULT_OK){
+
+            Game game = data.getParcelableExtra(MainActivity.ITEM);
+            int id = game.getId();
+            if (id ==-1){
+                Toast.makeText(this,"There's a problem, item can't be saved" ,
+                        Toast.LENGTH_SHORT);
             }
+        } else {
+            Toast.makeText(this, "Saving item failed!", Toast.LENGTH_SHORT);
         }
 
-//        if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                Game game = data.getParcelableExtra(MainActivity.ITEM);
-//
-//                // DIT was de reden dat de app crashte !!!!
-//                //gameViewModel.insert(game);
-//            }
-//        }
 
     }
 

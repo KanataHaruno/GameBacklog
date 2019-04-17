@@ -60,18 +60,15 @@ public class AddGame extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 String saveDate = DateFormat.getDateInstance().format(calendar.getTime());
 
-                game = new Game("", "", "", "");
-                game.setTitle(saveTitle);
-                game.setPlatform(savePlatform);
-                game.setStatus(saveStatus);
-                game.setDate(saveDate);
 
-                //Game game = new Game(saveTitle, savePlatform, saveStatus, saveDate);
                 Intent returnIntent = new Intent();
-
-                returnIntent.putExtra(MainActivity.ITEM, game);
+                returnIntent.putExtra("title", saveTitle);
+                returnIntent.putExtra("platform", savePlatform);
+                returnIntent.putExtra("status", saveStatus);
+                returnIntent.putExtra("date", saveDate);
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
+
             }
         });
     }
