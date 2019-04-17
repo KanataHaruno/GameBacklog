@@ -26,9 +26,6 @@ public class AddGame extends AppCompatActivity {
     private EditText title;
     private EditText platform;
     private Spinner statusSpinner;
-    private String date;
-
-    public Game game;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

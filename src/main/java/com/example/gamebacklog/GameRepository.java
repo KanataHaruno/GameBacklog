@@ -9,13 +9,14 @@ import android.os.AsyncTask;
 
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class GameRepository {
 
     private GameRoomDatabase gameRoomDatabase;
     private GameDao gameDao;
     private LiveData<List<Game>> gameList;
-    private Executor executor;
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     public GameRepository(Context context) {
         gameRoomDatabase = GameRoomDatabase.getDatabase(context);

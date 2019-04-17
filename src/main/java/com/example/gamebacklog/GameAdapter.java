@@ -74,7 +74,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             gamePlatform = itemView.findViewById(R.id.gamePlatformView);
             gameStatus = itemView.findViewById(R.id.gameStatusView);
             gameDate = itemView.findViewById(R.id.gameDateView);
-            cardView = itemView.findViewById(R.id.cvGames);
+            cardView = itemView.findViewById(R.id.cardView);
             cardView.setClickable(true);
 
 

@@ -59,14 +59,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
         restoreGames = new ArrayList<>();
 
         // Link recycler view to layout
-        recyclerView = findViewById(R.id.recyclerview_game_item);
+        recyclerView = findViewById(R.id.rvGame);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
         recyclerView.setHasFixedSize(true);
+
+
         gameAdapter = new GameAdapter(gameList);
         recyclerView.setAdapter(gameAdapter);
 
+        // For using Queries from Data Acces Object
         gameDataBase = GameRoomDatabase.getDatabase(this);
         executor = Executors.newSingleThreadExecutor();
         gameDao = gameDataBase.gameDao();
@@ -87,8 +88,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
         gameViewModel.getAllGames().observe(this, new Observer<List<Game>>() {
             @Override
             public void onChanged(@Nullable List<Game> games) {
-                gameList = games;
-                updateUI();
+                gameAdapter.setGames(games);
             }
         });
 
