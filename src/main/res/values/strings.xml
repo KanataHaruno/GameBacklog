@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GameBacklog</string>
+    <string name="title">Title</string>
+    <string name="platform">Platform</string>
+    <string name="gameDeleted">deleted</string>
+    <string name="undo">UNDO</string>
+
+    <string-array name="status_array">
+        <item>Want to play</item>
+        <item>Playing</item>
+        <item>Stalled</item>
+        <item>Stopped</item>
+    </string-array>
+
+</resources>
